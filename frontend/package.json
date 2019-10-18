@@ -1,0 +1,21 @@
+{
+  "name": "hello-next",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.7.0",
+    "isomorphic-fetch": "^2.2.1",
+    "next": "^9.0.0",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4"
+  }
+}
