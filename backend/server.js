@@ -1,12 +1,16 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
+const cors = require("cors");
+
 const app = express();
 
 app.set("port", 8080);
 
 app.use(bodyParser.json({ type: "application/json" }));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+
 var Pool = require("pg").Pool;
 var config = {
 	host: "localhost",
@@ -17,7 +21,7 @@ var config = {
 
 var pool = new Pool(config);
 
-app.get("/info", async (req, res) => {
+app.get("/api/info", async (req, res) => {
 	console.log(req.query.q);
 	try {
 		const template = "SELECT * from campgrounds WHERE name = $1";
@@ -32,7 +36,7 @@ app.get("/info", async (req, res) => {
 	}
 });
 
-app.get("/near", async (req, res) => {
+app.get("/api/near", async (req, res) => {
 	console.log(req.query.city);
 	try {
 		const template = "SELECT name from campgrounds WHERE closest_town = $1";
@@ -50,11 +54,11 @@ app.get("/near", async (req, res) => {
 	}
 });
 
-app.get("/hello", (req, res) => {
+app.get("/api/hello", (req, res) => {
 	res.json("Hello World!");
 });
 
-app.get("/vacancy", (req, res) => {
+app.get("/api/vacancy", (req, res) => {
 	console.log(req.query);
 	const campground = req.query.q;
 	if (campground == "Saddle") {
@@ -64,7 +68,7 @@ app.get("/vacancy", (req, res) => {
 	}
 });
 
-app.post("/add", async (req, res) => {
+app.post("/api/add", async (req, res) => {
 	const name = req.body.name;
 	const city = req.body.city;
 	const description = req.body.description;
