@@ -15,7 +15,7 @@ function handleError(error) {
 }
 
 function getCampground(name) {
-  return fetch(`http://localhost:8080/api/info?q=${name}`).then(function(resp) {
+  return fetch(`http://35.196.38.200/api/info?q=${name}`).then(function(resp) {
     //   return fetch(`http:localhost:8080/info?q=${name}`).then(function(resp) {
     return resp.json();
   });
